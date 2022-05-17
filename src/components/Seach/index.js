@@ -1,4 +1,5 @@
 import { Select } from 'antd';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { searchHackerNews } from 'src/services';
 
@@ -7,6 +8,8 @@ import StyledSearch from './StyledSearch';
 const { Option } = Select;
 
 function Search() {
+  const router = useRouter();
+
   const [searchText, setSearchText] = useState('');
   const [options, setOptions] = useState([]);
   //use down below state to manage error and loading state
@@ -19,6 +22,7 @@ function Search() {
   async function handleSearch(value) {
     if (value) {
       setStatus({ loading: true });
+
       const newOptions = await searchHackerNews(value);
       if (newOptions?.error) {
         //we will set our error here
@@ -27,10 +31,8 @@ function Search() {
       }
     }
   }
-  function handleSelect(value, option) {
-    //route to description page
-    // eslint-disable-next-line no-console
-    console.log({ option, value });
+  function handleSelect(value) {
+    router.push(`details/${value}`);
   }
   return (
     <>

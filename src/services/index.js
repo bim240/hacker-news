@@ -10,3 +10,14 @@ export async function searchHackerNews(text) {
     return { error };
   }
 }
+
+export async function getNewsDetails(id) {
+  try {
+    const res = await fetchWrapper.get(`items/${id}`);
+    return { res };
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error('error at getNewsDetails', { error });
+    return { error };
+  }
+}
