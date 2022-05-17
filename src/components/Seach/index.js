@@ -22,7 +22,7 @@ function Search() {
   async function handleSearch(value) {
     if (value) {
       setStatus({ loading: true });
-
+      //add debouncing here for less api call
       const newOptions = await searchHackerNews(value);
       if (newOptions?.error) {
         //we will set our error here

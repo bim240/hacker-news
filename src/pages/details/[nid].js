@@ -54,6 +54,8 @@ function Details() {
                 {' '}
                 <b>Comments</b>
               </h3>
+              {/* comment list is really long and it has parent children 
+              relation, so we can use virtual list to show log list */}
               {details?.children?.slice(0, 10).map(comment => (
                 <div key={comment.id} className="single_comment">
                   {' '}
